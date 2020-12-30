@@ -1,23 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Info from "./components/Info";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <section className="todoapp">
+        <Header />
+        {/* This section should be hidden by default and shown when there are todos */}
+        <section className="main">
+          <input className="toggle-all" type="checkbox" />
+          <label htmlFor="toggle-all">Mark all as complete</label>
+          <ul className="todo-list">
+            <li className="completed">
+              <div className="view">
+                <input className="toggle" type="checkbox" />
+                <label>Learn JavaScript</label>
+                <button className="destroy" />
+              </div>
+            </li>
+            <li>
+              <div className="view">
+                <input className="toggle" type="checkbox" />
+                <label>Learn React</label>
+                <button className="destroy" />
+              </div>
+            </li>
+            <li>
+              <div className="view">
+                <input className="toggle" type="checkbox" />
+                <label>Have a life!</label>
+                <button className="destroy" />
+              </div>
+            </li>
+          </ul>
+        </section>
+        {/* This footer should hidden by default and shown when there are todos */}
+        <Footer />
+      </section>
+      <Info />
     </div>
   );
 }
