@@ -1,11 +1,12 @@
 import React from "react";
+import Todo from "./Todo";
 import { useState, useEffect } from "react";
 /* 
 TODO: -todolist shown when there are --> <ul>
       
 */
 
-function TodoList({ todos }) {
+function TodoList({ todos, setTodos }) {
   return (
     <>
       <section className="main">
@@ -13,13 +14,14 @@ function TodoList({ todos }) {
         <label htmlFor="toggle-all">Mark all as complete</label>
         <ul className="todo-list">
           {todos.map((todo) => (
-            <li key={todo.id}>
-              <div className="view">
-                <input className="toggle" type="checkbox" />
-                <label>{todo.text}</label>
-                <button className="destroy" />
-              </div>
-            </li>
+            <Todo
+              todos={todos}
+              setTodos={setTodos}
+              todo={todo}
+              text={todo.text}
+              key={todo.id}
+              id={todo.id}
+            />
           ))}
         </ul>
       </section>

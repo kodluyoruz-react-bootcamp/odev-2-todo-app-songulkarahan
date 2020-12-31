@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Header from "./components/Header";
+import Form from "./components/Form";
 import Footer from "./components/Footer";
 import Info from "./components/Info";
 import TodoList from "./components/TodoList";
@@ -11,14 +11,9 @@ function App() {
   return (
     <>
       <section className="todoapp">
-        <Header
-          todos={todos}
-          setTodos={setTodos}
-          task={task}
-          setTask={setTask}
-        />
+        <Form todos={todos} setTodos={setTodos} task={task} setTask={setTask} />
         {/* This section should be hidden by default and shown when there are todos */}
-        <TodoList task={task} todos={todos} />
+        <TodoList todos={todos} setTodos={setTodos} />
         {/* This footer should hidden by default and shown when there are todos */}
         <Footer />
       </section>

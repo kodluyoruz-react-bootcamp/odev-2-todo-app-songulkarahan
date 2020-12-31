@@ -1,27 +1,27 @@
 import React from "react";
 import { useState } from "react";
+import { nanoid } from "nanoid";
 /*
 TODO: setTask("") edit with useEffect 
 */
-function Header({ todos, setTodos, task, setTask }) {
+function Form({ todos, setTodos, task, setTask }) {
   const handleOnChange = (e) => {
     // console.log(e.target.value);
     setTask(e.target.value);
   };
-  const handleOnSubmit = (e) => {
+
+  const addTodo = (e) => {
     e.preventDefault();
-    setTodos([
-      ...todos,
-      { text: task, completed: false, id: Math.random() * 1000 },
-    ]);
-    setTask("");
-    console.log(todos);
+    if (task) {
+      setTodos([...todos, { text: task, completed: false, id: nanoid() }]);
+      setTask("");
+    }
   };
   return (
     <>
       <header className="header">
         <h1>todos</h1>
-        <form onSubmit={handleOnSubmit}>
+        <form onSubmit={addTodo}>
           <input
             type="text"
             value={task}
@@ -35,4 +35,4 @@ function Header({ todos, setTodos, task, setTask }) {
   );
 }
 
-export default Header;
+export default Form;
