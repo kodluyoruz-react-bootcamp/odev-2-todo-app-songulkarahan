@@ -1,25 +1,24 @@
 import React from "react";
+import { useState, useEffect } from "react";
 
-function Todo({ text, id, todo, todos, setTodos }) {
+function Todo({ text, id, todo, completed, todos, setTodos }) {
   const deleteTodo = (id) => {
     const filtered = todos.filter((todo) => todo.id !== id);
     setTodos(filtered);
   };
 
   const toggleTodoCompleted = () => {
-    setTodos(
-      todos.map((item) => {
-        if (item.id === todo.id) {
-          return { ...item, completed: !item.completed };
-        }
-        return item;
-      })
-    );
+    const updatedTodos = todos.map((item) => {
+      if (item.id === todo.id) {
+        return { ...item, completed: !todo.completed };
+      }
+      return item;
+    });
+    setTodos(updatedTodos);
   };
-
   return (
     <div>
-      <li>
+      <li className={todo.completed ? "completed" : ""}>
         <div className="view">
           <input
             onClick={toggleTodoCompleted}
