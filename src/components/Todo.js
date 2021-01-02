@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 
 function Todo({ text, id, todo, completed, todos, setTodos }) {
+  // const [comp, setComp] = useState(false);
+
   const deleteTodo = (id) => {
     const filtered = todos.filter((todo) => todo.id !== id);
     setTodos(filtered);
@@ -12,10 +14,16 @@ function Todo({ text, id, todo, completed, todos, setTodos }) {
       if (item.id === todo.id) {
         return { ...item, completed: !todo.completed };
       }
+
       return item;
     });
     setTodos(updatedTodos);
   };
+  // useEffect(() => {
+
+  //   setCount((n) => n + 1);
+  // }, [completed]);   //working but wrong :)
+
   return (
     <div>
       <li className={todo.completed ? "completed" : ""}>

@@ -1,18 +1,11 @@
 import React from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
-//  // const [count, setCount] = useState(0);
-// console.log(count);
-// useEffect(() => {
-//   todos.map((item) => {
-//     if (item.completed === false) {
-//     }
-//     return setCount((c) => c + 1);
-//   });
-// }, [todos]);
 //
 
-function Filters({ todos, status, filter, setFilter, setStatus }) {
+function Filters({ todos, setTodos, status, setStatus, setFilter, completed }) {
+  const [count, setCount] = useState(0);
+
   const filteredTodo = () => {
     switch (status) {
       case "completed":
@@ -26,15 +19,39 @@ function Filters({ todos, status, filter, setFilter, setStatus }) {
         break;
     }
   };
+
+  const clearCompleted = () => {
+    const list = todos.filter((todo) => todo.completed !== true);
+    setTodos(list);
+  };
+
   useEffect(() => {
     filteredTodo();
   }, [todos, status]);
+
+  useEffect(() => {
+    setCount((c) => c + 1);
+    return () => {};
+  }, [todos]);
+
+  // useEffect(() => {
+  //   console.log("workingg");
+  //   return () => {
+  //     setCount((n) => n + 1);
+  //   }
+  // }, [completed]);
+
+  // const todoCount = () => {
+  //   const uncompleted = todos.filter((todo) => todo.completed === false);
+  //   return uncompleted;
+  // };
+
   return (
     <>
       <footer className="footer">
         {/* This should be `0 items left` by default */}
         <span className="todo-count">
-          <strong></strong>
+          <strong>{count}</strong>
           items left
         </span>
         <ul className="filters">
@@ -51,7 +68,9 @@ function Filters({ todos, status, filter, setFilter, setStatus }) {
           </li>
         </ul>
         {/* Hidden if no completed items are left ↓ */}
-        <button className="clear-completed">Clear completed</button>
+        <button onClick={clearCompleted} className="clear-completed">
+          Clear completed
+        </button>
       </footer>
     </>
   );
