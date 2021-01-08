@@ -1,12 +1,13 @@
 import React from "react";
 import { useEffect } from "react";
 import { nanoid } from "nanoid";
-/*
-TODO: setTask("") edit with useEffect 
-*/
+
 function Form({ todos, setTodos, task, setTask }) {
+  useEffect(() => {
+    setTask("");
+  }, [todos]);
+
   const handleOnChange = (e) => {
-    // console.log(e.target.value);
     setTask(e.target.value);
   };
 
@@ -14,13 +15,8 @@ function Form({ todos, setTodos, task, setTask }) {
     e.preventDefault();
     if (task) {
       setTodos([...todos, { text: task, completed: false, id: nanoid() }]);
-      //setTask("");
     }
   };
-
-  useEffect(() => {
-    setTask("");
-  }, [todos]);
 
   return (
     <>
