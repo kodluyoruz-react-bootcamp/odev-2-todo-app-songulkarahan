@@ -6,8 +6,9 @@ function Filters({ todos, setTodos, status, setStatus, setFilter }) {
 
   useEffect(() => {
     let sayi = 0;
-    todos.forEach((todo) => {
+    todos.map((todo) => {
       !todo.completed && sayi++;
+      return sayi;
     });
     setCount(sayi);
   }, [todos]);
